@@ -1,9 +1,18 @@
 .galleryItem {
+    overflow: hidden;
     cursor: pointer;
+    border-radius: 2px;
+    box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14),
+        0px 2px 1px -1px rgba(0, 0, 0, 0.12);
 }
 
 .image {
     width: 100%;
     object-fit: cover;
     height: 100%;
+    transition: transform cubic-bezier(0.455, 0.03, 0.515, 0.955) 300ms;
+}
+
+.image:hover {
+    transform: scale(1.02);
 }

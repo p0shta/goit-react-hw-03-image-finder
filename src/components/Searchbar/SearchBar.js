@@ -5,6 +5,7 @@ export default class SearchBar extends Component {
     state = {
         search: '',
     };
+
     onChange = e => {
         this.setState({
             search: e.target.value,
@@ -13,6 +14,7 @@ export default class SearchBar extends Component {
 
     onSubmit = e => {
         e.preventDefault();
+
         if (this.state.search.trim() === '') {
             return;
         }
@@ -27,7 +29,7 @@ export default class SearchBar extends Component {
                 <header className={s.searchbar}>
                     <form className={s.form} onSubmit={this.onSubmit}>
                         <button type="submit" className={s.button}>
-                            <span className="button-label">Search</span>
+                            Search
                         </button>
 
                         <input
