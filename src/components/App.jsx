@@ -2,6 +2,9 @@ import { Component } from 'react';
 import ImageGallery from './ImageGallery/ImageGallery';
 import SearchBar from './Searchbar/SearchBar';
 import ServiceApi from '../services/ServiceApi';
+import Loader from './Loader/Loader';
+import Button from './Button/Button';
+import Modal from './Modal/Modal';
 
 export class App extends Component {
     state = {
@@ -67,20 +70,21 @@ export class App extends Component {
 
     render() {
         const { image, images, loading, modalOpen, contentAvailable } = this.state;
+        const contentLoaded = contentAvailable && !loading;
 
         return (
             <main>
                 <SearchBar onSubmit={this.onSubmit} />
-                <ImageGallery
-                    contentAvailable={contentAvailable}
-                    image={image}
-                    images={images}
-                    loading={loading}
-                    modalOpen={modalOpen}
-                    modalToggle={this.modalToggle}
-                    onButtonClick={this.onButtonClick}
-                    onImageClick={this.onImageClick}
-                />
+                <ImageGallery images={images} onImageClick={this.onImageClick} />
+                {loading && <Loader />}
+                {contentLoaded && <Button onButtonClick={this.onButtonClick} />}
+                {modalOpen && (
+                    <Modal
+                        link={image.largeImageURL}
+                        alt={image.tags}
+                        modalToggle={this.modalToggle}
+                    />
+                )}
             </main>
         );
     }
